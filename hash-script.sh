@@ -7,6 +7,7 @@ clear
 GREEN="\033[30;42m"; GREENF="\033[0m"
 BLUE="\e[34m"; BLUEF="\e[0m"
 RED="\033[31;40m"; REDF="\033[0m"
+PURPLE="\e[35m"; PURPLEF="\e[0m"
 
 ##Function to download the necessary libraries to execute this script.
 downloads(){
@@ -85,7 +86,7 @@ hash_type(){
 #downloads
 file_hash=""
 
-loading_chars="/ - \\ |" duration=3 interval=0.1 end_time=$((SECONDS + duration))
+loading_chars="/ - \\ |" duration=2 interval=0.1 end_time=$((SECONDS + duration))
     while [ $SECONDS -lt $end_time ]; do
         for char in $loading_chars; do
             echo -ne "\rLoading... $char"
@@ -95,10 +96,11 @@ loading_chars="/ - \\ |" duration=3 interval=0.1 end_time=$((SECONDS + duration)
 clear
 echo -e "${GREEN}Welcome to the Hash Validator.${GREENF}"
 echo -e "${GREEN}         By Angel Mariscurrena${GREENF}"
-sleep 1.5
+sleep 2
+echo ""
 echo -e "${BLUE}Here you will be able to confirm that the integrity of your files has not been compromised.${BLUEF}"
 
-while getopts :f:h: option; do
+while getopts :f:h:m option; do
         case $option in
             f) 
                 echo -e "${BLUE}Select the hash algorithm that was applied to the file.${BLUEF}"
@@ -113,6 +115,11 @@ while getopts :f:h: option; do
                     echo ""
                     echo -e "${RED}File's integrity has been compromised!! Be careful!${REDF}"
                 fi
+            ;;
+            m)
+                echo -e "${PURPLE}For use this tool, you can use the following command structure:${PURPLEF}"
+                echo ""
+                echo -e "${PURPLE}---> Command: ./hash-script.sh -f <File_to_Corroborate> -h <Original_Hash>${PURPLEF}"
             ;;
             ?) echo "Option Unknown: "$OPTARG""
         esac
