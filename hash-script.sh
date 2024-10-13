@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 ##By Angel Mariscurrena
 ##Repo: https://github.com/Mariscurrena/Hash-Validator.git
-##git@github.com:Mariscurrena/Hash-Validator.git 
 clear
 
 ##Colors Definition
